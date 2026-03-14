@@ -115,13 +115,20 @@
             transform: scale(1.08);
         }
 
-        /* Marquee */
+        /* Marquee Base */
         .marquee-container {
             display: flex;
             width: 200%;
         }
         .marquee-container:hover {
             animation-play-state: paused;
+        }
+
+        /* Faster Marquee strictly for Mobile */
+        @media (max-width: 768px) {
+            .animate-marquee {
+                animation: marquee 15s linear infinite !important;
+            }
         }
 
         /* Lightbox */
@@ -180,63 +187,68 @@
         </div>
     </nav>
 
-    <section class="relative min-h-[100svh] flex items-center pt-24 pb-12 overflow-hidden bg-cardio-dark">
+    <section class="relative min-h-[100svh] flex flex-col justify-end md:justify-center overflow-hidden bg-cardio-dark pb-16 md:pb-0 md:pt-24">
         <div class="absolute inset-0 z-0">
-            <img src="https://github.com/agelmet/BAFAKIS/blob/main/69c1a1ff-424b-4ff0-954a-ac81631cb0d1.jpeg?raw=true" alt="Γιάννης Μπαφάκης - Καρδιολόγος" class="w-full h-full object-cover object-[70%_30%] opacity-90 img-mask">
+            <img src="https://github.com/agelmet/BAFAKIS/blob/main/69c1a1ff-424b-4ff0-954a-ac81631cb0d1.jpeg?raw=true" alt="Γιάννης Μπαφάκης - Καρδιολόγος" class="w-full h-full object-cover object-[70%_15%] md:object-[70%_30%] opacity-90">
         </div>
         
-        <div class="absolute inset-0 bg-gradient-to-r from-cardio-dark via-cardio-dark/80 to-transparent z-10 w-full md:w-3/4"></div>
-        <div class="absolute inset-0 bg-gradient-to-t from-cardio-dark via-transparent to-cardio-dark/30 z-10"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-cardio-dark/80 to-cardio-dark z-10 md:hidden"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-cardio-dark via-cardio-dark/50 to-transparent z-10 hidden md:block w-full"></div>
 
-        <svg class="bg-lines z-10" viewBox="0 0 1000 500" preserveAspectRatio="none">
+        <svg class="bg-lines z-10 hidden md:block" viewBox="0 0 1000 500" preserveAspectRatio="none">
             <path d="M-100,300 C200,400 400,100 1100,200" stroke="white" stroke-width="1.5" fill="none" opacity="0.3"></path>
             <path d="M-100,400 C300,500 500,200 1100,300" stroke="var(--color-cardio-accent)" stroke-width="2" fill="none" opacity="0.4"></path>
         </svg>
 
         <div class="max-w-7xl mx-auto px-6 w-full relative z-20 flex flex-col md:flex-row items-center">
             
-            <div class="w-full md:w-3/5 lg:w-1/2 pt-10 md:pt-0 reveal">
-                <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-white/20 bg-white/5 backdrop-blur-md text-white/90 text-sm font-medium mb-8">
+            <div class="w-full md:w-[60%] lg:w-[55%] pt-[40vh] md:pt-0 pb-6 md:pb-0 reveal">
+                <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-white/20 bg-cardio-dark/30 backdrop-blur-md text-white/90 text-sm font-medium mb-6 md:mb-8">
                     <span class="w-2 h-2 rounded-full bg-cardio-accent animate-pulse"></span>
                     <span class="tracking-widest no-accents text-xs">MD, PhDC | ΕΙΔΙΚΟΣ ΚΑΡΔΙΟΛΟΓΟΣ</span>
                 </div>
                 
-                <h1 class="text-5xl lg:text-7xl font-serif text-white leading-[1.1] mb-6 drop-shadow-lg">
-                    Κλινική Καρδιολογία <br>
+                <h1 class="text-4xl sm:text-5xl lg:text-7xl font-serif text-white leading-[1.15] md:leading-[1.1] mb-4 md:mb-6 drop-shadow-lg">
+                    Κλινική Καρδιολογία <br class="hidden sm:block">
                     <span class="text-transparent bg-clip-text bg-gradient-to-r from-gray-300 to-white italic font-light">Υψηλών Προδιαγραφών</span>
                 </h1>
                 
-                <p class="text-lg md:text-xl text-gray-300 mb-10 max-w-lg leading-relaxed font-light border-l-2 border-cardio-accent pl-5">
+                <p class="text-base sm:text-lg md:text-xl text-gray-200 mb-8 md:mb-10 max-w-lg leading-relaxed font-light border-l-2 border-cardio-accent pl-4 md:pl-5">
                     Με διεθνή εμπειρία και επίκεντρο τον άνθρωπο. Σύγχρονη διάγνωση, πρόληψη και εξειδικευμένη αντιμετώπιση.
                 </p>
                 
-                <div class="flex flex-wrap items-center gap-5">
-                    <a href="#contact" class="px-8 py-4 bg-cardio-accent text-white rounded-full font-bold hover:bg-white hover:text-cardio-accent transition-all duration-300 shadow-accent flex items-center gap-2 group">
+                <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-5">
+                    <a href="#contact" class="w-full sm:w-auto text-center px-8 py-4 bg-cardio-accent text-white rounded-full font-bold hover:bg-white hover:text-cardio-accent transition-all duration-300 shadow-accent flex items-center justify-center gap-2 group">
                         ΚΛΕΙΣΤΕ ΡΑΝΤΕΒΟΥ
                         <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
                     </a>
-                    <div class="flex items-center gap-4 border border-white/20 rounded-full px-6 py-3 bg-white/5 backdrop-blur-sm">
-                        <i data-lucide="map-pin" class="w-5 h-5 text-gray-400"></i>
-                        <span class="text-sm font-medium text-gray-200">Ωρωπός | Βουλιαγμένη | Κολωνάκι</span>
+                    <div class="flex items-center justify-center w-full sm:w-auto gap-3 border border-white/20 rounded-full px-6 py-3 bg-cardio-dark/40 backdrop-blur-md">
+                        <i data-lucide="map-pin" class="w-4 h-4 text-gray-400"></i>
+                        <span class="text-xs sm:text-sm font-medium text-gray-200">Ωρωπός | Βουλιαγμένη | Κολωνάκι</span>
                     </div>
                 </div>
             </div>
             
-            <div class="w-full md:w-2/5 lg:w-1/2 h-[40vh] md:h-auto"></div>
+            <div class="hidden md:block w-full md:w-[40%] lg:w-[45%] h-auto"></div>
         </div>
         
-        <a href="#about" class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-30 flex flex-col items-center gap-2 text-white/50 hover:text-white transition-colors animate-float">
+        <a href="#about" class="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-30 flex flex-col items-center gap-2 text-white/50 hover:text-white transition-colors animate-float hidden md:flex">
             <span class="text-[10px] tracking-[0.2em] no-accents uppercase">SCROLL</span>
             <i data-lucide="chevron-down" class="w-5 h-5"></i>
         </a>
     </section>
 
     <section id="about" class="py-24 px-6 relative bg-white">
-        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
             
-            <div class="relative order-2 lg:order-1 reveal">
+            <div class="block lg:hidden reveal order-1">
+                <span class="text-cardio-accent font-bold tracking-[0.15em] text-xs mb-3 block no-accents">ΓΝΩΡΙΣΤΕ ΤΟΝ ΙΑΤΡΟ</span>
+                <h2 class="text-3xl font-serif text-cardio-dark leading-tight">Κλινική Καρδιολογία με Διεθνή Εμπειρία</h2>
+            </div>
+
+            <div class="relative reveal order-2 lg:order-1">
                 <div class="moving-img-wrapper cursor-pointer group" onclick="openLightbox('https://github.com/agelmet/BAFAKIS/blob/main/IMG_7072.jpeg?raw=true')">
-                    <img src="https://github.com/agelmet/BAFAKIS/blob/main/IMG_7072.jpeg?raw=true" alt="Γιάννης Μπαφάκης Ειδικός Καρδιολόγος" class="w-full h-auto object-cover min-h-[500px]">
+                    <img src="https://github.com/agelmet/BAFAKIS/blob/main/IMG_7072.jpeg?raw=true" alt="Γιάννης Μπαφάκης Ειδικός Καρδιολόγος" class="w-full h-auto object-cover min-h-[400px] lg:min-h-[500px]">
                     
                     <div class="absolute inset-0 bg-cardio-dark/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
                         <div class="w-16 h-16 rounded-full bg-white/20 flex items-center justify-center border border-white/50">
@@ -245,31 +257,33 @@
                     </div>
                 </div>
 
-                <div class="absolute -bottom-8 -right-8 z-30 bg-white p-6 rounded-2xl shadow-2xl border border-gray-100 animate-float hidden md:block">
+                <div class="absolute -bottom-6 -right-6 lg:-bottom-8 lg:-right-8 z-30 bg-white p-5 lg:p-6 rounded-2xl shadow-2xl border border-gray-100 animate-float hidden sm:block">
                     <div class="flex items-center gap-4">
-                        <div class="w-14 h-14 rounded-full bg-cardio-light flex items-center justify-center text-cardio-accent">
-                            <i data-lucide="award" class="w-7 h-7"></i>
+                        <div class="w-12 h-12 lg:w-14 lg:h-14 rounded-full bg-cardio-light flex items-center justify-center text-cardio-accent">
+                            <i data-lucide="award" class="w-6 h-6 lg:w-7 lg:h-7"></i>
                         </div>
                         <div>
-                            <p class="text-xl font-bold text-cardio-dark leading-none mb-1">PhDc</p>
-                            <p class="text-xs text-cardio-slate/70 font-medium">Ιατρική Σχολή Αθηνών</p>
+                            <p class="text-lg lg:text-xl font-bold text-cardio-dark leading-none mb-1">PhDc</p>
+                            <p class="text-[10px] lg:text-xs text-cardio-slate/70 font-medium">Ιατρική Σχολή Αθηνών</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="order-1 lg:order-2 reveal reveal-delay-1">
-                <span class="text-cardio-accent font-bold tracking-[0.15em] text-sm mb-4 block no-accents">ΓΝΩΡΙΣΤΕ ΤΟΝ ΙΑΤΡΟ</span>
-                <h2 class="text-4xl md:text-5xl font-serif text-cardio-dark mb-8 leading-tight">Κλινική Καρδιολογία με Διεθνή Εμπειρία</h2>
+            <div class="reveal reveal-delay-1 order-3 lg:order-2">
+                <div class="hidden lg:block mb-8">
+                    <span class="text-cardio-accent font-bold tracking-[0.15em] text-sm mb-4 block no-accents">ΓΝΩΡΙΣΤΕ ΤΟΝ ΙΑΤΡΟ</span>
+                    <h2 class="text-4xl md:text-5xl font-serif text-cardio-dark leading-tight">Κλινική Καρδιολογία με Διεθνή Εμπειρία</h2>
+                </div>
                 
-                <div class="space-y-6 text-lg text-cardio-slate/80 font-light leading-relaxed">
+                <div class="space-y-6 text-base lg:text-lg text-cardio-slate/80 font-light leading-relaxed">
                     <p>
                         Ο <strong>Γιάννης Μπαφάκης (MD, PhDc)</strong> είναι Ειδικός Καρδιολόγος με εκτεταμένη κλινική και ερευνητική πορεία. Αποτελεί Επιστημονικό Συνεργάτη του <strong>Ιατρικού Κέντρου Αθηνών</strong>, καθώς και των νοσοκομείων <strong>Hôpitaux Iris Sud</strong> στις Βρυξέλλες (Βέλγιο), διατηρώντας άμεση επαφή με τις σύγχρονες ευρωπαϊκές ιατρικές εξελίξεις. Παράλληλα, διατελεί Επιστημονικός Υπεύθυνος στο κέντρο "Πλάτων Διάγνωση".
                     </p>
                     <p>
                         Το επιστημονικό του έργο είναι άρρηκτα συνδεδεμένο με το <strong>Ιπποκράτειο Γενικό Νοσοκομείο Αθηνών</strong>. Εκεί όχι μόνο ολοκλήρωσε την ειδικότητά του, αλλά παραμένει σταθερός συνεργάτης της Μονάδας Υπέρτασης (Α’ Πανεπιστημιακή Καρδιολογική Κλινική). Στο ίδιο πλαίσιο, εκπονεί τη Διδακτορική του Διατριβή (PhDc) με αντικείμενο την ανθεκτική αρτηριακή υπέρταση και τις βλάβες στα όργανα-στόχους.
                     </p>
-                    <blockquote class="border-l-4 border-cardio-accent pl-6 py-3 my-8 text-xl font-serif text-cardio-dark italic bg-cardio-light/50 rounded-r-xl shadow-sm">
+                    <blockquote class="border-l-4 border-cardio-accent pl-5 py-2 lg:pl-6 lg:py-3 my-6 lg:my-8 text-lg lg:text-xl font-serif text-cardio-dark italic bg-cardio-light/50 rounded-r-xl shadow-sm">
                         "Προσεγγίζω τον ασθενή ολιστικά, εστιάζοντας στην έγκαιρη διάγνωση, την πρόληψη και τη σωστή ρύθμιση των καρδιαγγειακών παραγόντων κινδύνου."
                     </blockquote>
                     <p>
@@ -285,59 +299,54 @@
         <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-cardio-accent/5 rounded-full blur-[80px] pointer-events-none"></div>
 
         <div class="max-w-7xl mx-auto relative z-10">
-            <div class="text-center mb-20 reveal">
+            <div class="text-center mb-16 reveal">
                 <span class="text-cardio-accent font-bold tracking-[0.15em] text-sm mb-4 block no-accents">ΕΞΕΙΔΙΚΕΥΣΗ</span>
                 <h2 class="text-4xl md:text-5xl font-serif text-cardio-dark mb-6">Υπηρεσίες & Παροχές</h2>
                 <div class="w-20 h-1 bg-gradient-to-r from-cardio-dark to-cardio-accent mx-auto rounded-full"></div>
             </div>
-            
-            
-
-[Image of human cardiovascular system anatomy]
-
 
             <div class="grid md:grid-cols-2 gap-8 mt-12">
                 
-                <div class="glass-card p-10 rounded-[2rem] group hover:-translate-y-2 transition-all duration-500 reveal shadow-sm hover:shadow-xl relative overflow-hidden border border-gray-100">
+                <div class="glass-card p-8 lg:p-10 rounded-[2rem] group hover:-translate-y-2 transition-all duration-500 reveal shadow-sm hover:shadow-xl relative overflow-hidden border border-gray-100">
                     <div class="absolute top-0 right-0 w-32 h-32 bg-cardio-blue/5 rounded-bl-[100px] transition-colors group-hover:bg-cardio-blue/10"></div>
-                    <div class="w-16 h-16 rounded-2xl bg-cardio-dark flex items-center justify-center text-white mb-8 group-hover:scale-110 transition-transform shadow-lg">
-                        <i data-lucide="activity" class="w-8 h-8"></i>
+                    <div class="w-14 h-14 lg:w-16 lg:h-16 rounded-2xl bg-cardio-dark flex items-center justify-center text-white mb-6 lg:mb-8 group-hover:scale-110 transition-transform shadow-lg">
+                        <i data-lucide="activity" class="w-7 h-7 lg:w-8 lg:h-8"></i>
                     </div>
-                    <h3 class="text-2xl font-bold text-cardio-dark mb-4 font-serif">Κλινική Καρδιολογία & Προληπτικός Έλεγχος</h3>
-                    <p class="text-cardio-slate/70 leading-relaxed">
+                    <h3 class="text-xl lg:text-2xl font-bold text-cardio-dark mb-4 font-serif">Κλινική Καρδιολογία & Προληπτικός Έλεγχος</h3>
+                    <p class="text-sm lg:text-base text-cardio-slate/70 leading-relaxed">
                         Η πρόληψη σώζει ζωές. Πλήρης καρδιολογικός έλεγχος (check-up) που περιλαμβάνει κλινική εξέταση, ηλεκτροκαρδιογράφημα και λεπτομερή λήψη ιστορικού. Απευθύνεται σε άτομα χωρίς ιστορικό αλλά και σε ασθενείς για παρακολούθηση στεφανιαίας νόσου, καρδιακής ανεπάρκειας, αρρυθμιών και δυσλιπιδαιμίας.
                     </p>
                 </div>
 
-                <div class="glass-card p-10 rounded-[2rem] group hover:-translate-y-2 transition-all duration-500 reveal reveal-delay-1 shadow-sm hover:shadow-xl relative overflow-hidden border border-gray-100" style="--glow-color: rgba(159, 18, 57, 0.1);">
+                <div class="glass-card p-8 lg:p-10 rounded-[2rem] group hover:-translate-y-2 transition-all duration-500 reveal reveal-delay-1 shadow-sm hover:shadow-xl relative overflow-hidden border border-gray-100" style="--glow-color: rgba(159, 18, 57, 0.1);">
                     <div class="absolute top-0 right-0 w-32 h-32 bg-cardio-accent/5 rounded-bl-[100px] transition-colors group-hover:bg-cardio-accent/10"></div>
-                    <div class="w-16 h-16 rounded-2xl bg-cardio-accent flex items-center justify-center text-white mb-8 group-hover:scale-110 transition-transform shadow-lg">
-                        <i data-lucide="heart-pulse" class="w-8 h-8"></i>
+                    <div class="w-14 h-14 lg:w-16 lg:h-16 rounded-2xl bg-cardio-accent flex items-center justify-center text-white mb-6 lg:mb-8 group-hover:scale-110 transition-transform shadow-lg">
+                        <i data-lucide="heart-pulse" class="w-7 h-7 lg:w-8 lg:h-8"></i>
                     </div>
-                    <h3 class="text-2xl font-bold text-cardio-dark mb-4 font-serif">Εξειδικευμένη Διαχείριση Αρτηριακής Υπέρτασης</h3>
-                    <p class="text-cardio-slate/70 leading-relaxed">
+                    <h3 class="text-xl lg:text-2xl font-bold text-cardio-dark mb-4 font-serif">Εξειδικευμένη Διαχείριση Αρτηριακής Υπέρτασης</h3>
+                    <p class="text-sm lg:text-base text-cardio-slate/70 leading-relaxed">
                         Αξιοποιώντας πολυετή εμπειρία από τη Μονάδα Υπέρτασης του Ιπποκρατείου, παρέχεται εξειδικευμένη παρακολούθηση. Δίνεται ιδιαίτερη βαρύτητα στη διερεύνηση της <strong>"ανθεκτικής υπέρτασης"</strong> και στην προστασία των οργάνων-στόχων (καρδιά, νεφρά, αγγεία).
                     </p>
                 </div>
 
-                <div class="glass-card p-10 rounded-[2rem] group hover:-translate-y-2 transition-all duration-500 reveal shadow-sm hover:shadow-xl relative overflow-hidden border border-gray-100">
+                <div class="glass-card p-8 lg:p-10 rounded-[2rem] group hover:-translate-y-2 transition-all duration-500 reveal shadow-sm hover:shadow-xl relative overflow-hidden border border-gray-100">
                     <div class="absolute top-0 right-0 w-32 h-32 bg-gray-100 rounded-bl-[100px] transition-colors group-hover:bg-gray-200"></div>
-                    <div class="w-16 h-16 rounded-2xl bg-cardio-slate flex items-center justify-center text-white mb-8 group-hover:scale-110 transition-transform shadow-lg">
-                        <i data-lucide="waves" class="w-8 h-8"></i>
+                    <div class="w-14 h-14 lg:w-16 lg:h-16 rounded-2xl bg-cardio-slate flex items-center justify-center text-white mb-6 lg:mb-8 group-hover:scale-110 transition-transform shadow-lg">
+                        <i data-lucide="waves" class="w-7 h-7 lg:w-8 lg:h-8"></i>
                     </div>
-                    <h3 class="text-2xl font-bold text-cardio-dark mb-4 font-serif">Υπερηχοκαρδιογραφία (Triplex Καρδιάς)</h3>
-                    <p class="text-cardio-slate/70 leading-relaxed">
+                    <h3 class="text-xl lg:text-2xl font-bold text-cardio-dark mb-4 font-serif">Υπερηχοκαρδιογραφία <br class="hidden lg:block">(Triplex Καρδιάς)</h3>
+                    <p class="text-sm lg:text-base text-cardio-slate/70 leading-relaxed">
                         Με πολυετή εμπειρία ως Καρδιολόγος Υπερηχοκαρδιογραφικού Τμήματος στο Ιατρικό Κέντρο Αθηνών και στις Βρυξέλλες, ο ιατρός διενεργεί Triplex υψηλής ακρίβειας. Θεμελιώδης εξέταση για την αξιολόγηση λειτουργικότητας του μυός και των βαλβίδων.
                     </p>
                 </div>
 
-                <div class="glass-card p-10 rounded-[2rem] group hover:-translate-y-2 transition-all duration-500 reveal reveal-delay-1 shadow-sm hover:shadow-xl relative overflow-hidden border border-gray-100">
+                <div class="glass-card p-8 lg:p-10 rounded-[2rem] group hover:-translate-y-2 transition-all duration-500 reveal reveal-delay-1 shadow-sm hover:shadow-xl relative overflow-hidden border border-gray-100">
                     <div class="absolute top-0 right-0 w-32 h-32 bg-cardio-dark/5 rounded-bl-[100px] transition-colors group-hover:bg-cardio-dark/10"></div>
-                    <div class="w-16 h-16 rounded-2xl border-2 border-cardio-dark bg-transparent flex items-center justify-center text-cardio-dark mb-8 group-hover:scale-110 transition-transform">
-                        <i data-lucide="map" class="w-8 h-8"></i>
+                    <div class="w-14 h-14 lg:w-16 lg:h-16 rounded-2xl border-2 border-cardio-dark bg-transparent flex items-center justify-center text-cardio-dark mb-6 lg:mb-8 group-hover:scale-110 transition-transform">
+                        <i data-lucide="map" class="w-7 h-7 lg:w-8 lg:h-8"></i>
                     </div>
-                    <h3 class="text-2xl font-bold text-cardio-dark mb-4 font-serif">Δίκτυο Ιατρείων <br><span class="text-lg text-cardio-accent">Κολωνάκι, Βουλιαγμένη, Ωρωπός</span></h3>
-                    <p class="text-cardio-slate/70 leading-relaxed">
+                    <h3 class="text-xl lg:text-2xl font-bold text-cardio-dark mb-4 font-serif">Δίκτυο Ιατρείων <br><span class="text-base lg:text-lg text-cardio-accent">Κολωνάκι, Βουλιαγμένη, Ωρωπός</span></h3>
+                    <p class="text-sm lg:text-base text-cardio-slate/70 leading-relaxed">
                         Για την καλύτερη προσβασιμότητα, ο ιατρός δέχεται στο κέντρο της Αθήνας (Κολωνάκι), στα Νότια Προάστια (Βουλιαγμένη), και στον προσωπικό του χώρο στον Ωρωπό. Σύντομα σε ολοκαίνουργιο, υπερσύγχρονο χώρο στο Κολωνάκι.
                     </p>
                 </div>
@@ -348,21 +357,29 @@
 
     <section id="trust" class="py-24 px-6 bg-cardio-dark text-white relative">
         <div class="max-w-7xl mx-auto">
-            <div class="grid lg:grid-cols-12 gap-16 items-center">
+            <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
                 
-                <div class="lg:col-span-4 reveal">
+                <div class="lg:col-span-5 xl:col-span-4 reveal">
                     <h2 class="text-4xl md:text-5xl font-serif mb-6 leading-tight">Η Ιατρική μου Υπογραφή</h2>
-                    <p class="text-gray-400 mb-8 leading-relaxed">
+                    <p class="text-gray-300 mb-8 leading-relaxed">
                         Η εξειδίκευση και η συνεχής παρουσία σε κορυφαία νοσοκομεία και διεθνή συνέδρια αποτελούν την εγγύηση για την υγεία σας.
                     </p>
-                    <a href="#contact" class="inline-flex items-center gap-2 px-6 py-3 border border-white/30 rounded-full hover:bg-white hover:text-cardio-dark transition-colors text-sm font-bold no-accents">
+                    
+                    <div class="mb-8 rounded-2xl overflow-hidden border border-white/10 shadow-lg cursor-pointer group" onclick="openLightbox('https://github.com/agelmet/BAFAKIS/blob/main/415c7e41-3e56-4067-8f25-48c97b8d4a98-2.jpeg?raw=true')">
+                        <div class="relative">
+                            <img src="https://github.com/agelmet/BAFAKIS/blob/main/415c7e41-3e56-4067-8f25-48c97b8d4a98-2.jpeg?raw=true" alt="Συμμετοχή σε Διεθνή Συνέδρια" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-cardio-dark/20 group-hover:bg-transparent transition-colors duration-300"></div>
+                        </div>
+                    </div>
+
+                    <a href="#contact" class="inline-flex items-center gap-2 px-8 py-3 bg-white/10 border border-white/30 rounded-full hover:bg-white hover:text-cardio-dark transition-colors text-sm font-bold no-accents backdrop-blur-sm">
                         ΕΠΙΚΟΙΝΩΝΙΑ
                     </a>
                 </div>
 
-                <div class="lg:col-span-8 grid sm:grid-cols-2 gap-8">
+                <div class="lg:col-span-7 xl:col-span-8 grid sm:grid-cols-2 gap-6 lg:gap-8">
                     
-                    <div class="bg-white/5 border border-white/10 p-8 rounded-3xl hover:bg-white/10 transition-colors group reveal">
+                    <div class="bg-white/5 border border-white/10 p-8 rounded-3xl hover:bg-white/10 transition-colors group reveal h-full">
                         <i data-lucide="building-2" class="w-10 h-10 text-cardio-accent mb-6 group-hover:scale-110 transition-transform"></i>
                         <h4 class="text-xl font-bold mb-3 font-serif">Κορυφαία Νοσοκομειακή Εμπειρία</h4>
                         <p class="text-sm text-gray-400 leading-relaxed">
@@ -370,7 +387,7 @@
                         </p>
                     </div>
 
-                    <div class="bg-white/5 border border-white/10 p-8 rounded-3xl hover:bg-white/10 transition-colors group reveal reveal-delay-1 mt-0 sm:mt-12">
+                    <div class="bg-white/5 border border-white/10 p-8 rounded-3xl hover:bg-white/10 transition-colors group reveal reveal-delay-1 sm:translate-y-8 h-full">
                         <i data-lucide="microscope" class="w-10 h-10 text-blue-400 mb-6 group-hover:scale-110 transition-transform"></i>
                         <h4 class="text-xl font-bold mb-3 font-serif">Ακαδημαϊκή Εξειδίκευση & Έρευνα</h4>
                         <p class="text-sm text-gray-400 leading-relaxed">
@@ -378,7 +395,7 @@
                         </p>
                     </div>
 
-                    <div class="bg-white/5 border border-white/10 p-8 rounded-3xl hover:bg-white/10 transition-colors group reveal reveal-delay-2">
+                    <div class="bg-white/5 border border-white/10 p-8 rounded-3xl hover:bg-white/10 transition-colors group reveal reveal-delay-2 h-full">
                         <i data-lucide="globe" class="w-10 h-10 text-emerald-400 mb-6 group-hover:scale-110 transition-transform"></i>
                         <h4 class="text-xl font-bold mb-3 font-serif">Διεθνής Επιστημονική Παρουσία</h4>
                         <p class="text-sm text-gray-400 leading-relaxed">
@@ -386,7 +403,7 @@
                         </p>
                     </div>
 
-                    <div class="bg-white/5 border border-white/10 p-8 rounded-3xl hover:bg-white/10 transition-colors group reveal reveal-delay-3 mt-0 sm:mt-12">
+                    <div class="bg-white/5 border border-white/10 p-8 rounded-3xl hover:bg-white/10 transition-colors group reveal reveal-delay-3 sm:translate-y-8 h-full">
                         <i data-lucide="shield-check" class="w-10 h-10 text-purple-400 mb-6 group-hover:scale-110 transition-transform"></i>
                         <h4 class="text-xl font-bold mb-3 font-serif">Ολοκληρωμένη Φροντίδα</h4>
                         <p class="text-sm text-gray-400 leading-relaxed">
@@ -402,74 +419,94 @@
     <section id="reviews" class="py-24 bg-white overflow-hidden border-b border-gray-100 relative">
         <div class="max-w-7xl mx-auto px-6 mb-16 text-center reveal">
             <span class="text-cardio-accent font-bold tracking-[0.15em] text-sm mb-4 block no-accents">ΕΜΠΕΙΡΙΕΣ ΑΣΘΕΝΩΝ</span>
-            <h2 class="text-4xl md:text-5xl font-serif text-cardio-dark mb-4">Τι Λένε Για Εμάς</h2>
+            <h2 class="text-3xl md:text-5xl font-serif text-cardio-dark mb-4">Τι Λένε Για Εμάς</h2>
             <div class="w-20 h-1 bg-gradient-to-r from-cardio-dark to-cardio-accent mx-auto rounded-full"></div>
         </div>
 
         <div class="w-full relative pb-10">
-            <div class="absolute left-0 top-0 bottom-0 w-16 md:w-40 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
-            <div class="absolute right-0 top-0 bottom-0 w-16 md:w-40 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
+            <div class="absolute left-0 top-0 bottom-0 w-12 md:w-40 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
+            <div class="absolute right-0 top-0 bottom-0 w-12 md:w-40 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
             
             <div class="marquee-container animate-marquee">
                 <div class="flex space-x-6 px-3">
-                    <div class="w-[350px] glass-card p-8 rounded-3xl shrink-0 cursor-default hover:-translate-y-1 transition-transform">
+                    <div class="w-[320px] md:w-[350px] glass-card p-8 rounded-3xl shrink-0 cursor-default hover:-translate-y-1 transition-transform border border-gray-100">
                         <div class="flex justify-between items-start mb-6">
-                            <div class="flex text-cardio-accent gap-1">
+                            <div class="flex text-yellow-400 gap-1">
                                 <i data-lucide="star" class="w-5 h-5 fill-current"></i><i data-lucide="star" class="w-5 h-5 fill-current"></i><i data-lucide="star" class="w-5 h-5 fill-current"></i><i data-lucide="star" class="w-5 h-5 fill-current"></i><i data-lucide="star" class="w-5 h-5 fill-current"></i>
                             </div>
-                            <i data-lucide="message-circle" class="w-6 h-6 text-gray-200"></i>
+                            <svg class="w-6 h-6 opacity-60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                                <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                            </svg>
                         </div>
                         <p class="text-cardio-slate/80 text-sm mb-6 italic leading-relaxed">"Εξαιρετικός ιατρός αλλά το πιο σημαντικό, πολύ καλός άνθρωπος. Έκατσε μαζί μας να μας εξηγήσει όλες μας τις εξετάσεις και το πώς πρέπει να κινηθούμε από εδώ και..."</p>
                         <div class="flex items-center gap-3 pt-4 border-t border-gray-100">
-                            <div class="w-10 h-10 rounded-full bg-cardio-light flex items-center justify-center font-bold text-cardio-dark">A</div>
+                            <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center font-bold text-blue-700">A</div>
                             <div>
                                 <p class="text-sm font-bold text-cardio-dark">Athanasiou M</p>
                                 <p class="text-xs text-gray-400">Review from Google • 5/5</p>
                             </div>
                         </div>
                     </div>
-                    <div class="w-[350px] glass-card p-8 rounded-3xl shrink-0 cursor-default hover:-translate-y-1 transition-transform">
+                    <div class="w-[320px] md:w-[350px] glass-card p-8 rounded-3xl shrink-0 cursor-default hover:-translate-y-1 transition-transform border border-gray-100">
                         <div class="flex justify-between items-start mb-6">
-                            <div class="flex text-cardio-accent gap-1">
+                            <div class="flex text-yellow-400 gap-1">
                                 <i data-lucide="star" class="w-5 h-5 fill-current"></i><i data-lucide="star" class="w-5 h-5 fill-current"></i><i data-lucide="star" class="w-5 h-5 fill-current"></i><i data-lucide="star" class="w-5 h-5 fill-current"></i><i data-lucide="star" class="w-5 h-5 fill-current"></i>
                             </div>
-                            <i data-lucide="message-circle" class="w-6 h-6 text-gray-200"></i>
+                            <svg class="w-6 h-6 opacity-60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                                <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                            </svg>
                         </div>
                         <p class="text-cardio-slate/80 text-sm mb-6 italic leading-relaxed">"Εξαιρετικός επιστήμονας,ευγενής και πολύ λεπτολόγος στις εξετάσεις του. Με σεβασμό στον κάθε ασθενή και όποτε τον χρειαστείς πάντα εκεί. Εδώ και χρόνια δεν τον αλλάζω με κανέναν!! Ευχαριστώ!!!!!"</p>
                         <div class="flex items-center gap-3 pt-4 border-t border-gray-100">
-                            <div class="w-10 h-10 rounded-full bg-cardio-light flex items-center justify-center font-bold text-cardio-dark">Ν</div>
+                            <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center font-bold text-purple-700">Ν</div>
                             <div>
                                 <p class="text-sm font-bold text-cardio-dark">Νατάσα Τόδωρη</p>
                                 <p class="text-xs text-gray-400">Review from Google • 5/5</p>
                             </div>
                         </div>
                     </div>
-                    <div class="w-[350px] glass-card p-8 rounded-3xl shrink-0 cursor-default hover:-translate-y-1 transition-transform">
+                    <div class="w-[320px] md:w-[350px] glass-card p-8 rounded-3xl shrink-0 cursor-default hover:-translate-y-1 transition-transform border border-gray-100">
                         <div class="flex justify-between items-start mb-6">
-                            <div class="flex text-cardio-accent gap-1">
+                            <div class="flex text-yellow-400 gap-1">
                                 <i data-lucide="star" class="w-5 h-5 fill-current"></i><i data-lucide="star" class="w-5 h-5 fill-current"></i><i data-lucide="star" class="w-5 h-5 fill-current"></i><i data-lucide="star" class="w-5 h-5 fill-current"></i><i data-lucide="star" class="w-5 h-5 fill-current"></i>
                             </div>
-                            <i data-lucide="message-circle" class="w-6 h-6 text-gray-200"></i>
+                            <svg class="w-6 h-6 opacity-60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                                <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                            </svg>
                         </div>
                         <p class="text-cardio-slate/80 text-sm mb-6 italic leading-relaxed">"Εξαιρετικός γιατρός λεπτολόγος υπομονετικός μου έλυσε όλες τις απορίες που είχα του συστήνω ανεπιφύλακτα"</p>
                         <div class="flex items-center gap-3 pt-4 border-t border-gray-100">
-                            <div class="w-10 h-10 rounded-full bg-cardio-light flex items-center justify-center font-bold text-cardio-dark">N</div>
+                            <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center font-bold text-green-700">N</div>
                             <div>
                                 <p class="text-sm font-bold text-cardio-dark">Nikos Nanopoulos</p>
                                 <p class="text-xs text-gray-400">Review from Google • 5/5</p>
                             </div>
                         </div>
                     </div>
-                    <div class="w-[350px] glass-card p-8 rounded-3xl shrink-0 cursor-default hover:-translate-y-1 transition-transform">
+                    <div class="w-[320px] md:w-[350px] glass-card p-8 rounded-3xl shrink-0 cursor-default hover:-translate-y-1 transition-transform border border-gray-100">
                         <div class="flex justify-between items-start mb-6">
-                            <div class="flex text-cardio-accent gap-1">
+                            <div class="flex text-yellow-400 gap-1">
                                 <i data-lucide="star" class="w-5 h-5 fill-current"></i><i data-lucide="star" class="w-5 h-5 fill-current"></i><i data-lucide="star" class="w-5 h-5 fill-current"></i><i data-lucide="star" class="w-5 h-5 fill-current"></i><i data-lucide="star" class="w-5 h-5 fill-current"></i>
                             </div>
-                            <i data-lucide="message-circle" class="w-6 h-6 text-gray-200"></i>
+                            <svg class="w-6 h-6 opacity-60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                                <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                            </svg>
                         </div>
                         <p class="text-cardio-slate/80 text-sm mb-6 italic leading-relaxed">"Επισκέφθηκα το ιατρείο για έναν καρδιολογικό έλεγχο! Δεν εχω συναντήσει πιο ευγενικό γιατρό! Μου τα εξήγησε όλα υπέροχα! Επαγγελματίας!"</p>
                         <div class="flex items-center gap-3 pt-4 border-t border-gray-100">
-                            <div class="w-10 h-10 rounded-full bg-cardio-light flex items-center justify-center font-bold text-cardio-dark">P</div>
+                            <div class="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center font-bold text-red-700">P</div>
                             <div>
                                 <p class="text-sm font-bold text-cardio-dark">Panagiotis Mavraganis</p>
                                 <p class="text-xs text-gray-400">Review from Google • 5/5</p>
@@ -479,64 +516,84 @@
                 </div>
                 
                 <div class="flex space-x-6 px-3" aria-hidden="true">
-                    <div class="w-[350px] glass-card p-8 rounded-3xl shrink-0 cursor-default hover:-translate-y-1 transition-transform">
+                    <div class="w-[320px] md:w-[350px] glass-card p-8 rounded-3xl shrink-0 cursor-default hover:-translate-y-1 transition-transform border border-gray-100">
                         <div class="flex justify-between items-start mb-6">
-                            <div class="flex text-cardio-accent gap-1">
+                            <div class="flex text-yellow-400 gap-1">
                                 <i data-lucide="star" class="w-5 h-5 fill-current"></i><i data-lucide="star" class="w-5 h-5 fill-current"></i><i data-lucide="star" class="w-5 h-5 fill-current"></i><i data-lucide="star" class="w-5 h-5 fill-current"></i><i data-lucide="star" class="w-5 h-5 fill-current"></i>
                             </div>
-                            <i data-lucide="message-circle" class="w-6 h-6 text-gray-200"></i>
+                            <svg class="w-6 h-6 opacity-60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                                <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                            </svg>
                         </div>
                         <p class="text-cardio-slate/80 text-sm mb-6 italic leading-relaxed">"Εξαιρετικός ιατρός αλλά το πιο σημαντικό, πολύ καλός άνθρωπος. Έκατσε μαζί μας να μας εξηγήσει όλες μας τις εξετάσεις και το πώς πρέπει να κινηθούμε από εδώ και..."</p>
                         <div class="flex items-center gap-3 pt-4 border-t border-gray-100">
-                            <div class="w-10 h-10 rounded-full bg-cardio-light flex items-center justify-center font-bold text-cardio-dark">A</div>
+                            <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center font-bold text-blue-700">A</div>
                             <div>
                                 <p class="text-sm font-bold text-cardio-dark">Athanasiou M</p>
                                 <p class="text-xs text-gray-400">Review from Google • 5/5</p>
                             </div>
                         </div>
                     </div>
-                    <div class="w-[350px] glass-card p-8 rounded-3xl shrink-0 cursor-default hover:-translate-y-1 transition-transform">
+                    <div class="w-[320px] md:w-[350px] glass-card p-8 rounded-3xl shrink-0 cursor-default hover:-translate-y-1 transition-transform border border-gray-100">
                         <div class="flex justify-between items-start mb-6">
-                            <div class="flex text-cardio-accent gap-1">
+                            <div class="flex text-yellow-400 gap-1">
                                 <i data-lucide="star" class="w-5 h-5 fill-current"></i><i data-lucide="star" class="w-5 h-5 fill-current"></i><i data-lucide="star" class="w-5 h-5 fill-current"></i><i data-lucide="star" class="w-5 h-5 fill-current"></i><i data-lucide="star" class="w-5 h-5 fill-current"></i>
                             </div>
-                            <i data-lucide="message-circle" class="w-6 h-6 text-gray-200"></i>
+                            <svg class="w-6 h-6 opacity-60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                                <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                            </svg>
                         </div>
                         <p class="text-cardio-slate/80 text-sm mb-6 italic leading-relaxed">"Εξαιρετικός επιστήμονας,ευγενής και πολύ λεπτολόγος στις εξετάσεις του. Με σεβασμό στον κάθε ασθενή και όποτε τον χρειαστείς πάντα εκεί. Εδώ και χρόνια δεν τον αλλάζω με κανέναν!! Ευχαριστώ!!!!!"</p>
                         <div class="flex items-center gap-3 pt-4 border-t border-gray-100">
-                            <div class="w-10 h-10 rounded-full bg-cardio-light flex items-center justify-center font-bold text-cardio-dark">Ν</div>
+                            <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center font-bold text-purple-700">Ν</div>
                             <div>
                                 <p class="text-sm font-bold text-cardio-dark">Νατάσα Τόδωρη</p>
                                 <p class="text-xs text-gray-400">Review from Google • 5/5</p>
                             </div>
                         </div>
                     </div>
-                    <div class="w-[350px] glass-card p-8 rounded-3xl shrink-0 cursor-default hover:-translate-y-1 transition-transform">
+                    <div class="w-[320px] md:w-[350px] glass-card p-8 rounded-3xl shrink-0 cursor-default hover:-translate-y-1 transition-transform border border-gray-100">
                         <div class="flex justify-between items-start mb-6">
-                            <div class="flex text-cardio-accent gap-1">
+                            <div class="flex text-yellow-400 gap-1">
                                 <i data-lucide="star" class="w-5 h-5 fill-current"></i><i data-lucide="star" class="w-5 h-5 fill-current"></i><i data-lucide="star" class="w-5 h-5 fill-current"></i><i data-lucide="star" class="w-5 h-5 fill-current"></i><i data-lucide="star" class="w-5 h-5 fill-current"></i>
                             </div>
-                            <i data-lucide="message-circle" class="w-6 h-6 text-gray-200"></i>
+                            <svg class="w-6 h-6 opacity-60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                                <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                            </svg>
                         </div>
                         <p class="text-cardio-slate/80 text-sm mb-6 italic leading-relaxed">"Εξαιρετικός γιατρός λεπτολόγος υπομονετικός μου έλυσε όλες τις απορίες που είχα του συστήνω ανεπιφύλακτα"</p>
                         <div class="flex items-center gap-3 pt-4 border-t border-gray-100">
-                            <div class="w-10 h-10 rounded-full bg-cardio-light flex items-center justify-center font-bold text-cardio-dark">N</div>
+                            <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center font-bold text-green-700">N</div>
                             <div>
                                 <p class="text-sm font-bold text-cardio-dark">Nikos Nanopoulos</p>
                                 <p class="text-xs text-gray-400">Review from Google • 5/5</p>
                             </div>
                         </div>
                     </div>
-                    <div class="w-[350px] glass-card p-8 rounded-3xl shrink-0 cursor-default hover:-translate-y-1 transition-transform">
+                    <div class="w-[320px] md:w-[350px] glass-card p-8 rounded-3xl shrink-0 cursor-default hover:-translate-y-1 transition-transform border border-gray-100">
                         <div class="flex justify-between items-start mb-6">
-                            <div class="flex text-cardio-accent gap-1">
+                            <div class="flex text-yellow-400 gap-1">
                                 <i data-lucide="star" class="w-5 h-5 fill-current"></i><i data-lucide="star" class="w-5 h-5 fill-current"></i><i data-lucide="star" class="w-5 h-5 fill-current"></i><i data-lucide="star" class="w-5 h-5 fill-current"></i><i data-lucide="star" class="w-5 h-5 fill-current"></i>
                             </div>
-                            <i data-lucide="message-circle" class="w-6 h-6 text-gray-200"></i>
+                            <svg class="w-6 h-6 opacity-60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                                <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                            </svg>
                         </div>
                         <p class="text-cardio-slate/80 text-sm mb-6 italic leading-relaxed">"Επισκέφθηκα το ιατρείο για έναν καρδιολογικό έλεγχο! Δεν εχω συναντήσει πιο ευγενικό γιατρό! Μου τα εξήγησε όλα υπέροχα! Επαγγελματίας!"</p>
                         <div class="flex items-center gap-3 pt-4 border-t border-gray-100">
-                            <div class="w-10 h-10 rounded-full bg-cardio-light flex items-center justify-center font-bold text-cardio-dark">P</div>
+                            <div class="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center font-bold text-red-700">P</div>
                             <div>
                                 <p class="text-sm font-bold text-cardio-dark">Panagiotis Mavraganis</p>
                                 <p class="text-xs text-gray-400">Review from Google • 5/5</p>
@@ -582,13 +639,13 @@
                             <div class="p-2 rounded-lg bg-white/5 border border-white/10 shrink-0 mt-1">
                                 <i data-lucide="map-pin" class="w-5 h-5 text-cardio-accent"></i>
                             </div>
-                            <span class="leading-relaxed">Μαρμαρά 61, <br>Ωρωπός Τ.Κ. 19015</span>
+                            <span class="leading-relaxed text-sm lg:text-base">Μαρμαρά 61, <br>Ωρωπός Τ.Κ. 19015</span>
                         </li>
                         <li class="flex items-center gap-4 group cursor-pointer">
                             <div class="p-2 rounded-lg bg-white/5 border border-white/10 shrink-0 group-hover:bg-white/10 transition-colors">
                                 <i data-lucide="phone" class="w-5 h-5 text-cardio-accent"></i>
                             </div>
-                            <div class="flex flex-col gap-1">
+                            <div class="flex flex-col gap-1 text-sm lg:text-base">
                                 <a href="tel:2295302554" class="hover:text-white transition-colors">22953 02554</a>
                                 <a href="tel:6947301970" class="hover:text-white transition-colors">69473 01970</a>
                             </div>
@@ -597,7 +654,7 @@
                             <div class="p-2 rounded-lg bg-white/5 border border-white/10 shrink-0 group-hover:bg-white/10 transition-colors">
                                 <i data-lucide="mail" class="w-5 h-5 text-cardio-accent"></i>
                             </div>
-                            <a href="mailto:yiannis.bafakis@gmail.com" class="hover:text-white transition-colors text-sm break-all">yiannis.bafakis@gmail.com</a>
+                            <a href="mailto:yiannis.bafakis@gmail.com" class="hover:text-white transition-colors text-xs lg:text-sm break-all">yiannis.bafakis@gmail.com</a>
                         </li>
                     </ul>
                 </div>
