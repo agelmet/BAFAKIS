@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>Γιάννης Μπαφάκης | Ειδικός Καρδιολόγος & Υπέρταση</title>
-    <meta name="description" content="Ο Ειδικός Καρδιολόγος Γιάννης Μπαφάκης προσφέρει υπηρεσίες κλινικής καρδιολογίας, Triplex και ρύθμιση υπέρτασης σε Ωρωπό, Βουλιαγμένη & Κολωνάκι. Κλείστε ραντεβού.">
-    <meta name="keywords" content="Καρδιολόγος Ωρωπός, Ειδικός Καρδιολόγος, Triplex Καρδιάς, Αρτηριακή Υπέρταση, Γιάννης Μπαφάκης, Κλινική Καρδιολογία, Καρδιολόγος Κολωνάκι, Καρδιολόγος Βουλιαγμένη">
+    <title>Γιάννης Μπαφάκης | Ειδικός Καρδιολόγος</title>
+    <meta name="description" content="Ο Ειδικός Καρδιολόγος Γιάννης Μπαφάκης προσφέρει υπηρεσίες κλινικής καρδιολογίας, Triplex και Holter. Εξετάσεις σε Κολωνάκι, Βουλιαγμένη & Ωρωπό. Κλείστε ραντεβού.">
+    <meta name="keywords" content="Καρδιολόγος, Ειδικός Καρδιολόγος, Triplex Καρδιάς, Holter, Αρτηριακή Υπέρταση, Γιάννης Μπαφάκης, Κλινική Καρδιολογία, Καρδιολόγος Κολωνάκι, Καρδιολόγος Βουλιαγμένη, Καρδιολόγος Ωρωπός">
     <meta name="author" content="Advon Media">
     <meta name="robots" content="index, follow">
     
@@ -152,29 +152,37 @@
 
     <nav class="fixed w-full z-50 transition-all duration-500" id="navbar">
         <div class="max-w-7xl mx-auto px-6 py-4">
-            <div class="glass-panel bg-white/70 rounded-2xl flex justify-between items-center px-6 py-3 shadow-sm border border-white/50">
-                <a href="#" class="flex items-center gap-4 group">
-                    <div class="relative w-14 h-14 rounded-full p-1 bg-gradient-to-tr from-cardio-accent to-cardio-dark shadow-lg group-hover:scale-105 transition-transform duration-500">
+            <div class="glass-panel bg-white/70 rounded-2xl flex justify-between items-center px-6 py-3 shadow-sm border border-white/50 relative">
+                
+                <div class="flex items-center w-1/3 justify-start z-10">
+                    <button class="md:hidden text-cardio-dark focus:outline-none" id="mobile-menu-btn">
+                        <i data-lucide="menu" class="w-7 h-7"></i>
+                    </button>
+                    <div class="hidden md:flex items-center space-x-6 lg:space-x-8">
+                        <a href="#about" class="text-xs lg:text-sm font-medium text-cardio-slate hover:text-cardio-accent transition-colors">ΠΡΟΦΙΛ</a>
+                        <a href="#services" class="text-xs lg:text-sm font-medium text-cardio-slate hover:text-cardio-accent transition-colors">ΥΠΗΡΕΣΙΕΣ</a>
+                    </div>
+                </div>
+
+                <a href="#" class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 flex items-center justify-center gap-3 group z-20">
+                    <div class="relative w-12 h-12 md:w-14 md:h-14 rounded-full p-1 bg-gradient-to-tr from-cardio-accent to-cardio-dark shadow-lg group-hover:scale-105 transition-transform duration-500">
                         <img src="https://github.com/agelmet/BAFAKIS/blob/main/Gemini_Generated_Image_9ygan29ygan29yga.png?raw=true" alt="Γιάννης Μπαφάκης Logo" class="w-full h-full rounded-full object-cover border-2 border-white">
                         <div class="absolute inset-0 rounded-full border border-cardio-accent animate-pulse-slow opacity-50 scale-110"></div>
                     </div>
-                    <div class="hidden sm:block">
-                        <p class="font-serif font-bold text-lg text-cardio-dark leading-tight">ΓΙΑΝΝΗΣ ΜΠΑΦΑΚΗΣ</p>
-                        <p class="text-xs font-medium text-cardio-accent tracking-widest no-accents">ΕΙΔΙΚΟΣ ΚΑΡΔΙΟΛΟΓΟΣ</p>
+                    <div class="hidden lg:block text-left mt-1">
+                        <p class="font-serif font-bold text-base text-cardio-dark leading-none">ΓΙΑΝΝΗΣ ΜΠΑΦΑΚΗΣ</p>
+                        <p class="text-[10px] font-medium text-cardio-accent tracking-widest no-accents mt-1">ΕΙΔΙΚΟΣ ΚΑΡΔΙΟΛΟΓΟΣ</p>
                     </div>
                 </a>
                 
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#about" class="text-sm font-medium text-cardio-slate hover:text-cardio-accent transition-colors">ΠΡΟΦΙΛ</a>
-                    <a href="#services" class="text-sm font-medium text-cardio-slate hover:text-cardio-accent transition-colors">ΥΠΗΡΕΣΙΕΣ</a>
-                    <a href="#trust" class="text-sm font-medium text-cardio-slate hover:text-cardio-accent transition-colors">ΕΜΠΕΙΡΙΑ</a>
-                    <a href="#reviews" class="text-sm font-medium text-cardio-slate hover:text-cardio-accent transition-colors">ΚΡΙΤΙΚΕΣ</a>
-                    <a href="#contact" class="px-7 py-2.5 bg-cardio-dark text-white rounded-full text-sm font-medium hover:bg-cardio-accent hover:shadow-accent transition-all transform hover:-translate-y-1">ΚΛΕΙΣΤΕ ΡΑΝΤΕΒΟΥ</a>
+                <div class="flex items-center w-1/3 justify-end z-10 space-x-6 lg:space-x-8">
+                    <div class="hidden md:flex items-center space-x-6 lg:space-x-8">
+                        <a href="#trust" class="text-xs lg:text-sm font-medium text-cardio-slate hover:text-cardio-accent transition-colors">ΕΜΠΕΙΡΙΑ</a>
+                        <a href="#reviews" class="text-xs lg:text-sm font-medium text-cardio-slate hover:text-cardio-accent transition-colors">ΚΡΙΤΙΚΕΣ</a>
+                    </div>
+                    <div class="md:hidden w-7"></div>
                 </div>
 
-                <button class="md:hidden text-cardio-dark focus:outline-none" id="mobile-menu-btn">
-                    <i data-lucide="menu" class="w-7 h-7"></i>
-                </button>
             </div>
         </div>
         
@@ -208,7 +216,7 @@
             <div class="w-full md:w-[60%] lg:w-[55%] pt-[48vh] md:pt-0 pb-6 md:pb-0 reveal">
                 <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-white/20 bg-cardio-dark/30 backdrop-blur-md text-white/90 text-sm font-medium mb-6 md:mb-8">
                     <span class="w-2 h-2 rounded-full bg-cardio-accent animate-pulse"></span>
-                    <span class="tracking-widest no-accents text-xs">MD, PhDC | ΕΙΔΙΚΟΣ ΚΑΡΔΙΟΛΟΓΟΣ</span>
+                    <span class="tracking-widest no-accents text-xs">MD | ΔΙΔΑΚΤΟΡΙΚΕΣ ΣΠΟΥΔΕΣ</span>
                 </div>
                 
                 <h1 class="text-4xl sm:text-5xl lg:text-7xl font-serif text-white leading-[1.15] md:leading-[1.1] mb-4 md:mb-6 drop-shadow-lg">
@@ -227,7 +235,7 @@
                     </a>
                     <div class="flex items-center justify-center w-full sm:w-auto gap-3 border border-white/20 rounded-full px-6 py-3 bg-cardio-dark/40 backdrop-blur-md">
                         <i data-lucide="map-pin" class="w-4 h-4 text-gray-400"></i>
-                        <span class="text-xs sm:text-sm font-medium text-gray-200">Ωρωπός | Βουλιαγμένη | Κολωνάκι</span>
+                        <span class="text-xs sm:text-sm font-medium text-gray-200">Κολωνάκι | Βουλιαγμένη | Ωρωπός</span>
                     </div>
                 </div>
             </div>
@@ -266,7 +274,7 @@
                             <i data-lucide="award" class="w-6 h-6 lg:w-7 lg:h-7"></i>
                         </div>
                         <div>
-                            <p class="text-lg lg:text-xl font-bold text-cardio-dark leading-none mb-1">PhDc</p>
+                            <p class="text-base lg:text-lg font-bold text-cardio-dark leading-none mb-1">Διδακτορικές Σπουδές</p>
                             <p class="text-[10px] lg:text-xs text-cardio-slate/70 font-medium">Ιατρική Σχολή Αθηνών</p>
                         </div>
                     </div>
@@ -281,10 +289,10 @@
                 
                 <div class="space-y-6 text-base lg:text-lg text-cardio-slate/80 font-light leading-relaxed">
                     <p>
-                        Ο <strong>Γιάννης Μπαφάκης (MD, PhDc)</strong> είναι Ειδικός Καρδιολόγος με εκτεταμένη κλινική και ερευνητική πορεία. Αποτελεί Επιστημονικό Συνεργάτη του <strong>Ιατρικού Κέντρου Αθηνών</strong>, καθώς και των νοσοκομείων <strong>Hôpitaux Iris Sud</strong> στις Βρυξέλλες (Βέλγιο), διατηρώντας άμεση επαφή με τις σύγχρονες ευρωπαϊκές ιατρικές εξελίξεις. Παράλληλα, διατελεί Επιστημονικός Υπεύθυνος στο κέντρο "Πλάτων Διάγνωση".
+                        Ο <strong>Γιάννης Μπαφάκης (MD)</strong> είναι Ειδικός Καρδιολόγος με εκτεταμένη κλινική και ερευνητική πορεία. Αποτελεί Επιστημονικό Συνεργάτη του <strong>Ιατρικού Κέντρου Αθηνών</strong>, καθώς και των νοσοκομείων <strong>Hôpitaux Iris Sud</strong> στις Βρυξέλλες (Βέλγιο), διατηρώντας άμεση επαφή με τις σύγχρονες ευρωπαϊκές ιατρικές εξελίξεις. Παράλληλα, διατελεί Επιστημονικός Υπεύθυνος στο κέντρο "Πλάτων Διάγνωση".
                     </p>
                     <p>
-                        Το επιστημονικό του έργο είναι άρρηκτα συνδεδεμένο με το <strong>Ιπποκράτειο Γενικό Νοσοκομείο Αθηνών</strong>. Εκεί όχι μόνο ολοκλήρωσε την ειδικότητά του, αλλά παραμένει σταθερός συνεργάτης της Μονάδας Υπέρτασης (Α’ Πανεπιστημιακή Καρδιολογική Κλινική). Στο ίδιο πλαίσιο, εκπονεί τη Διδακτορική του Διατριβή (PhDc) με αντικείμενο την ανθεκτική αρτηριακή υπέρταση και τις βλάβες στα όργανα-στόχους.
+                        Το επιστημονικό του έργο είναι άρρηκτα συνδεδεμένο με το <strong>Ιπποκράτειο Γενικό Νοσοκομείο Αθηνών</strong>. Εκεί όχι μόνο ολοκλήρωσε την ειδικότητά του, αλλά παραμένει σταθερός συνεργάτης της Μονάδας Υπέρτασης (Α’ Πανεπιστημιακή Καρδιολογική Κλινική). Ταυτόχρονα διαθέτει Διδακτορικές Σπουδές με αντικείμενο την ανθεκτική υπέρταση και τις βλάβες στα όργανα-στόχους.
                     </p>
                     <blockquote class="border-l-4 border-cardio-accent pl-5 py-2 lg:pl-6 lg:py-3 my-6 lg:my-8 text-lg lg:text-xl font-serif text-cardio-dark italic bg-cardio-light/50 rounded-r-xl shadow-sm">
                         "Προσεγγίζω τον ασθενή ολιστικά, εστιάζοντας στην έγκαιρη διάγνωση, την πρόληψη και τη σωστή ρύθμιση των καρδιαγγειακών παραγόντων κινδύνου."
@@ -315,31 +323,31 @@
                     <div class="w-14 h-14 lg:w-16 lg:h-16 rounded-2xl bg-cardio-dark flex items-center justify-center text-white mb-6 lg:mb-8 group-hover:scale-110 transition-transform shadow-lg">
                         <i data-lucide="activity" class="w-7 h-7 lg:w-8 lg:h-8"></i>
                     </div>
-                    <h3 class="text-xl lg:text-2xl font-bold text-cardio-dark mb-4 font-serif">Κλινική Καρδιολογία & Προληπτικός Έλεγχος</h3>
+                    <h3 class="text-xl lg:text-2xl font-bold text-cardio-dark mb-4 font-serif">Προληπτικός & Προαθλητικός Έλεγχος</h3>
                     <p class="text-sm lg:text-base text-cardio-slate/70 leading-relaxed">
-                        Η πρόληψη σώζει ζωές. Πλήρης καρδιολογικός έλεγχος (check-up) που περιλαμβάνει κλινική εξέταση, ηλεκτροκαρδιογράφημα και λεπτομερή λήψη ιστορικού. Απευθύνεται σε άτομα χωρίς ιστορικό αλλά και σε ασθενείς για παρακολούθηση στεφανιαίας νόσου, καρδιακής ανεπάρκειας, αρρυθμιών και δυσλιπιδαιμίας.
+                        Η πρόληψη σώζει ζωές. Ο καρδιολογικός έλεγχος (check-up) περιλαμβάνει κλινική εξέταση, ηλεκτροκαρδιογράφημα και λήψη ιστορικού. Απευθύνεται σε άτομα χωρίς ιστορικό πάθησης και σε αθλητές που χρειάζονται βεβαίωση ιατρού για αθλητικές δραστηριότητες.
                     </p>
                 </div>
 
                 <div class="glass-card p-8 lg:p-10 rounded-[2rem] group hover:-translate-y-2 transition-all duration-500 reveal reveal-delay-1 shadow-sm hover:shadow-xl relative overflow-hidden border border-gray-100" style="--glow-color: rgba(159, 18, 57, 0.1);">
                     <div class="absolute top-0 right-0 w-32 h-32 bg-cardio-accent/5 rounded-bl-[100px] transition-colors group-hover:bg-cardio-accent/10"></div>
                     <div class="w-14 h-14 lg:w-16 lg:h-16 rounded-2xl bg-cardio-accent flex items-center justify-center text-white mb-6 lg:mb-8 group-hover:scale-110 transition-transform shadow-lg">
-                        <i data-lucide="heart-pulse" class="w-7 h-7 lg:w-8 lg:h-8"></i>
+                        <i data-lucide="waves" class="w-7 h-7 lg:w-8 lg:h-8"></i>
                     </div>
-                    <h3 class="text-xl lg:text-2xl font-bold text-cardio-dark mb-4 font-serif">Εξειδικευμένη Διαχείριση Αρτηριακής Υπέρτασης</h3>
+                    <h3 class="text-xl lg:text-2xl font-bold text-cardio-dark mb-4 font-serif">Υπερηχοκαρδιογράφημα (Triplex Καρδιάς)</h3>
                     <p class="text-sm lg:text-base text-cardio-slate/70 leading-relaxed">
-                        Αξιοποιώντας πολυετή εμπειρία από τη Μονάδα Υπέρτασης του Ιπποκρατείου, παρέχεται εξειδικευμένη παρακολούθηση. Δίνεται ιδιαίτερη βαρύτητα στη διερεύνηση της <strong>"ανθεκτικής υπέρτασης"</strong> και στην προστασία των οργάνων-στόχων (καρδιά, νεφρά, αγγεία).
+                        Πλήρης και εξειδικευμένος καρδιολογικός έλεγχος μέσα από πολυετή εμπειρία ως καρδιολόγος στο Ιατρικό Κέντρο Αθηνών και στα νοσοκομεία των Βρυξελλών. Το triplex καρδιάς απευθύνεται σε ασθενείς για παρακολούθηση αρτηριακής υπέρτασης, δυσλιπιδαιμίας, στεφανιαίας νόσου και καρδιακής ανεπάρκειας.
                     </p>
                 </div>
 
                 <div class="glass-card p-8 lg:p-10 rounded-[2rem] group hover:-translate-y-2 transition-all duration-500 reveal shadow-sm hover:shadow-xl relative overflow-hidden border border-gray-100">
                     <div class="absolute top-0 right-0 w-32 h-32 bg-gray-100 rounded-bl-[100px] transition-colors group-hover:bg-gray-200"></div>
                     <div class="w-14 h-14 lg:w-16 lg:h-16 rounded-2xl bg-cardio-slate flex items-center justify-center text-white mb-6 lg:mb-8 group-hover:scale-110 transition-transform shadow-lg">
-                        <i data-lucide="waves" class="w-7 h-7 lg:w-8 lg:h-8"></i>
+                        <i data-lucide="heart-pulse" class="w-7 h-7 lg:w-8 lg:h-8"></i>
                     </div>
-                    <h3 class="text-xl lg:text-2xl font-bold text-cardio-dark mb-4 font-serif">Υπερηχοκαρδιογραφία <br class="hidden lg:block">(Triplex Καρδιάς)</h3>
+                    <h3 class="text-xl lg:text-2xl font-bold text-cardio-dark mb-4 font-serif">Holter Ρυθμού (24ωρη/πολυήμερη) & Δοκιμασία Κόπωσης</h3>
                     <p class="text-sm lg:text-base text-cardio-slate/70 leading-relaxed">
-                        Με πολυετή εμπειρία ως Καρδιολόγος Υπερηχοκαρδιογραφικού Τμήματος στο Ιατρικό Κέντρο Αθηνών και στις Βρυξέλλες, ο ιατρός διενεργεί Triplex υψηλής ακρίβειας. Θεμελιώδης εξέταση για την αξιολόγηση λειτουργικότητας του μυός και των βαλβίδων.
+                        Παρέχονται σύγχρονες και αξιόπιστες καρδιολογικές υπηρεσίες με στόχο την ολοκληρωμένη διάγνωση και παρακολούθηση της καρδιακής λειτουργίας. Με έμφαση στην ακρίβεια, την ασφάλεια και την εξατομικευμένη φροντίδα, οι υπηρεσίες μας καλύπτουν πλήρως τις ανάγκες πρόληψης, διάγνωσης και παρακολούθησης των καρδιολογικών παθήσεων.
                     </p>
                 </div>
 
@@ -348,9 +356,9 @@
                     <div class="w-14 h-14 lg:w-16 lg:h-16 rounded-2xl border-2 border-cardio-dark bg-transparent flex items-center justify-center text-cardio-dark mb-6 lg:mb-8 group-hover:scale-110 transition-transform">
                         <i data-lucide="map" class="w-7 h-7 lg:w-8 lg:h-8"></i>
                     </div>
-                    <h3 class="text-xl lg:text-2xl font-bold text-cardio-dark mb-4 font-serif">Δίκτυο Ιατρείων <br><span class="text-base lg:text-lg text-cardio-accent">Κολωνάκι, Βουλιαγμένη, Ωρωπός</span></h3>
+                    <h3 class="text-xl lg:text-2xl font-bold text-cardio-dark mb-4 font-serif">Δίκτυο Ιατρείων <br><span class="text-base lg:text-lg text-cardio-accent">Εξετάσεις σε 3 περιοχές</span></h3>
                     <p class="text-sm lg:text-base text-cardio-slate/70 leading-relaxed">
-                        Για την καλύτερη προσβασιμότητα, ο ιατρός δέχεται στο κέντρο της Αθήνας (Κολωνάκι), στα Νότια Προάστια (Βουλιαγμένη), και στον προσωπικό του χώρο στον Ωρωπό. Σύντομα σε ολοκαίνουργιο, υπερσύγχρονο χώρο στο Κολωνάκι.
+                        Για την καλύτερη δυνατή προσβασιμότητα των ασθενών και την άμεση εξυπηρέτησή τους, οι ιατρικές εξετάσεις και παρακολουθήσεις πραγματοποιούνται κανονικά, κατόπιν ραντεβού, στα συνεργαζόμενα ιατρεία μας σε <strong>Κολωνάκι</strong>, <strong>Βουλιαγμένη</strong> και <strong>Ωρωπό</strong>.
                     </p>
                 </div>
 
@@ -394,7 +402,7 @@
                         <i data-lucide="microscope" class="w-10 h-10 text-blue-400 mb-6 group-hover:scale-110 transition-transform"></i>
                         <h4 class="text-xl font-bold mb-3 font-serif">Ακαδημαϊκή Εξειδίκευση & Έρευνα</h4>
                         <p class="text-sm text-gray-400 leading-relaxed">
-                            Ως Υποψήφιος Διδάκτωρ (PhDc) της <strong>Ιατρικής Σχολής Αθηνών</strong>, το ερευνητικό του έργο πάνω στην Αρτηριακή Υπέρταση εγγυάται πως η θεραπεία βασίζεται στις πιο σύγχρονες κατευθυντήριες οδηγίες.
+                            Με Διδακτορικές Σπουδές από την <strong>Ιατρική Σχολή Αθηνών</strong>, το ερευνητικό έργο πάνω στην Αρτηριακή Υπέρταση εγγυάται πως η θεραπεία βασίζεται στις πιο σύγχρονες κατευθυντήριες οδηγίες.
                         </p>
                     </div>
 
@@ -638,13 +646,26 @@
                 <div class="reveal reveal-delay-1">
                     <h4 class="text-lg font-bold text-white mb-6 tracking-wider no-accents">ΣΤΟΙΧΕΙΑ ΕΠΙΚΟΙΝΩΝΙΑΣ</h4>
                     <ul class="space-y-5 text-gray-400">
-                        <li class="flex items-start gap-4">
-                            <div class="p-2 rounded-lg bg-white/5 border border-white/10 shrink-0 mt-1">
+                        <li class="flex items-center gap-4">
+                            <div class="p-2 rounded-lg bg-white/5 border border-white/10 shrink-0">
                                 <i data-lucide="map-pin" class="w-5 h-5 text-cardio-accent"></i>
                             </div>
-                            <span class="leading-relaxed text-sm lg:text-base">Μαρμαρά 61, <br>Ωρωπός Τ.Κ. 19015</span>
+                            <span class="text-sm lg:text-base">Κολωνάκι</span>
                         </li>
-                        <li class="flex items-center gap-4 group cursor-pointer">
+                        <li class="flex items-center gap-4">
+                            <div class="p-2 rounded-lg bg-white/5 border border-white/10 shrink-0">
+                                <i data-lucide="map-pin" class="w-5 h-5 text-cardio-accent"></i>
+                            </div>
+                            <span class="text-sm lg:text-base">Βουλιαγμένη</span>
+                        </li>
+                        <li class="flex items-center gap-4 mb-2">
+                            <div class="p-2 rounded-lg bg-white/5 border border-white/10 shrink-0">
+                                <i data-lucide="map-pin" class="w-5 h-5 text-cardio-accent"></i>
+                            </div>
+                            <span class="text-sm lg:text-base">Ωρωπός</span>
+                        </li>
+                        
+                        <li class="flex items-center gap-4 group cursor-pointer pt-2 border-t border-white/10">
                             <div class="p-2 rounded-lg bg-white/5 border border-white/10 shrink-0 group-hover:bg-white/10 transition-colors">
                                 <i data-lucide="phone" class="w-5 h-5 text-cardio-accent"></i>
                             </div>
@@ -653,11 +674,19 @@
                                 <a href="tel:6947301970" class="hover:text-white transition-colors">69473 01970</a>
                             </div>
                         </li>
+                        
                         <li class="flex items-center gap-4 group cursor-pointer">
                             <div class="p-2 rounded-lg bg-white/5 border border-white/10 shrink-0 group-hover:bg-white/10 transition-colors">
                                 <i data-lucide="mail" class="w-5 h-5 text-cardio-accent"></i>
                             </div>
                             <a href="mailto:yiannis.bafakis@gmail.com" class="hover:text-white transition-colors text-xs lg:text-sm break-all">yiannis.bafakis@gmail.com</a>
+                        </li>
+                        
+                        <li class="flex items-center gap-4 group cursor-pointer">
+                            <div class="p-2 rounded-lg bg-white/5 border border-white/10 shrink-0 group-hover:bg-white/10 transition-colors">
+                                <i data-lucide="instagram" class="w-5 h-5 text-cardio-accent"></i>
+                            </div>
+                            <a href="https://instagram.com/yannis.bafakis" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors text-sm lg:text-base">@yannis.bafakis</a>
                         </li>
                     </ul>
                 </div>
