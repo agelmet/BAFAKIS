@@ -1,0 +1,16 @@
+{
+ "source": {
+  "kind": "file",
+  "ref": "assets/img/logo.webp"
+ },
+ "source_md5": "0e00cfdc5319f1a78b15824c2ddb8d0d",
+ "version": "146361d1",
+ "tile": "#ffffff",
+ "crop": null,
+ "header": [
+  "file",
+  "assets/img/logo.webp",
+  "0e00cfdc5319f1a78b15824c2ddb8d0d"
+ ],
+ "made": "2026-10-14"
+}
