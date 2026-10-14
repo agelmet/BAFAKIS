@@ -248,6 +248,86 @@ html{scroll-padding-top:110px}
   .ecg-base{stroke-dashoffset:0}.ecg-pulse,.trust-ecg{display:none}
 }
 
+/* ===== round 2 — interactive Υπηρεσίες + Ιατρική Υπογραφή ===== */
+/* animations run only while their section is on screen */
+[data-live] .svc-art *,[data-live] .trust-ecg path{animation-play-state:paused}
+[data-live].in-view .svc-art *,[data-live].in-view .trust-ecg path{animation-play-state:running}
+
+/* --- service cards --- */
+.fx-card{position:relative;isolation:isolate;--mx:50%;--my:30%;--rx:0deg;--ry:0deg}
+.svc-card{border-color:rgba(11,19,43,.07)!important}
+.svc-spot{position:absolute;inset:0;z-index:-1;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .5s;
+  background:radial-gradient(420px circle at var(--mx) var(--my),rgba(159,18,57,.075),transparent 62%)}
+.svc-card::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;pointer-events:none;opacity:0;transition:opacity .5s;
+  background:radial-gradient(300px circle at var(--mx) var(--my),rgba(159,18,57,.55),rgba(11,19,43,.12) 45%,transparent 70%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0)}
+.svc-card:hover .svc-spot,.svc-card:hover::after,.svc-card.is-lit .svc-spot,.svc-card.is-lit::after{opacity:1}
+@media (hover:hover){.svc-card:hover{transform:perspective(1100px) rotateX(var(--rx)) rotateY(var(--ry)) translateY(-8px)!important;transition:transform .35s var(--ease),box-shadow .5s var(--ease)!important}}
+.svc-card.is-lit{box-shadow:0 2px 4px rgba(11,19,43,.04),0 30px 56px -30px rgba(159,18,57,.35)}
+.svc-card>.w-14{transition:transform .6s var(--ease),box-shadow .6s}
+.svc-card:hover>.w-14,.svc-card.is-lit>.w-14{transform:translateY(-3px) rotate(-6deg) scale(1.06);box-shadow:0 14px 28px -12px rgba(11,19,43,.5)}
+.svc-num{display:flex;align-items:center;gap:.6rem;font:600 .72rem/1 Inter,sans-serif;letter-spacing:.2em;color:#9F1239;margin-bottom:.9rem}
+.svc-num i{display:block;width:28px;height:1px;background:currentColor;opacity:.35;transition:width .6s var(--ease)}
+.svc-card:hover .svc-num i,.svc-card.is-lit .svc-num i{width:52px;opacity:.7}
+.svc-art{position:absolute;top:2rem;right:2rem;width:136px;height:54px;pointer-events:none;opacity:.9;transition:transform .6s var(--ease),opacity .4s}
+@media (min-width:1024px){.svc-art{top:2.5rem;right:2.5rem;width:160px;height:64px}}
+.svc-card:hover .svc-art{transform:scale(1.06)}
+.svc-art svg{width:100%;height:100%;overflow:visible}
+.svc-art path,.svc-art circle{fill:none;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round}
+/* 01 ECG */
+.a-base{stroke:rgba(11,19,43,.14);stroke-width:1.6}
+.a-run{stroke:#9F1239;stroke-width:2.2;stroke-dasharray:.22 .78;stroke-dashoffset:1;animation:aRun 2.6s linear infinite}
+.a-beat{fill:#9F1239!important;stroke:none;transform-box:fill-box;transform-origin:center;animation:aBeat 2.6s ease-out infinite}
+@keyframes aRun{to{stroke-dashoffset:0}}
+@keyframes aBeat{0%,38%{transform:scale(0);opacity:0}44%{transform:scale(1.25);opacity:1}70%{transform:scale(1);opacity:.9}100%{transform:scale(0);opacity:0}}
+/* 02 ultrasound */
+.a-fan{fill:rgba(11,19,43,.05)!important;stroke:rgba(11,19,43,.16);stroke-width:1.2}
+.a-echo{stroke:#9F1239;stroke-width:2.4;opacity:0;animation:aEcho 2.4s ease-out infinite}
+.a-echo.e2{animation-delay:.35s}.a-echo.e3{animation-delay:.7s}
+.a-heart{fill:#9F1239!important;stroke:none;transform-box:fill-box;transform-origin:center;animation:aHeart 1.2s ease-in-out infinite}
+@keyframes aEcho{0%{opacity:0}18%{opacity:1}65%,100%{opacity:0}}
+@keyframes aHeart{0%,100%{transform:scale(.9)}15%{transform:scale(1.12)}30%{transform:scale(.96)}45%{transform:scale(1.06)}}
+/* 03 holter strip */
+.a-paper{fill:url(#ecgGrid)!important;stroke:rgba(159,18,57,.18)!important;stroke-width:1}
+.a-trace{stroke:#0B132B;stroke-width:1.8}
+.a-strip{animation:aStrip 3.2s linear infinite}
+@keyframes aStrip{to{transform:translateX(-160px)}}
+/* 04 network */
+.a-route{stroke:rgba(11,19,43,.3);stroke-width:1.6;stroke-dasharray:4 5;animation:aRoute 1.6s linear infinite}
+.a-dot{fill:#0B132B!important;stroke:#fff;stroke-width:2}
+.a-pin.p2 .a-dot{fill:#9F1239!important}
+.a-ring{stroke:#9F1239;stroke-width:1.4;transform-box:fill-box;transform-origin:center;opacity:0;animation:aRing 3s ease-out infinite}
+.a-pin.p2 .a-ring{animation-delay:1s}.a-pin.p3 .a-ring{animation-delay:2s}
+@keyframes aRoute{to{stroke-dashoffset:-18}}
+@keyframes aRing{0%{transform:scale(.6);opacity:.9}50%,100%{transform:scale(2.1);opacity:0}}
+
+/* --- trust cards: light that follows the cursor along the border --- */
+.tr-card{position:relative;overflow:hidden}
+.tr-card::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .5s;
+  background:radial-gradient(380px circle at var(--mx) var(--my),rgba(242,167,184,.18),transparent 60%)}
+.tr-card::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;pointer-events:none;opacity:0;transition:opacity .5s;
+  background:radial-gradient(260px circle at var(--mx) var(--my),rgba(242,167,184,.85),rgba(242,167,184,.15) 45%,transparent 70%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0)}
+.tr-card:hover::before,.tr-card:hover::after,.tr-card.is-lit::before,.tr-card.is-lit::after{opacity:1}
+@media (hover:hover){.tr-card.active:hover{transform:perspective(1100px) rotateX(var(--rx)) rotateY(var(--ry)) translateY(-6px);transition-duration:.35s}}
+.tr-card>*{position:relative;z-index:1}
+.tr-num{position:absolute!important;top:2rem;right:2rem;font:400 2.6rem/1 Literata,serif;color:transparent;-webkit-text-stroke:1px rgba(242,167,184,.28);transition:-webkit-text-stroke-color .5s,transform .6s var(--ease)}
+.tr-card:hover .tr-num,.tr-card.is-lit .tr-num{-webkit-text-stroke-color:rgba(242,167,184,.75);transform:translateY(-3px)}
+.tr-ic{transition:transform .6s var(--ease),background .5s,box-shadow .5s}
+.tr-card:hover .tr-ic,.tr-card.is-lit .tr-ic{transform:scale(1.08) rotate(-6deg);background:rgba(159,18,57,.35);box-shadow:0 0 0 6px rgba(242,167,184,.07),0 12px 30px -10px rgba(159,18,57,.8)}
+
+/* --- congress photo: tilt, light sweep, caption chip --- */
+.trust-photo{--rx:0deg;--ry:0deg;transform-style:preserve-3d}
+.trust-photo.fx-tilt.active[data-rv]{transform:perspective(1000px) rotateX(var(--rx)) rotateY(var(--ry));transition:transform .4s var(--ease),opacity 1.1s var(--ease)}
+.tp-shine{position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.28) 50%,transparent 65%);transform:translateX(-120%);transition:transform 1.1s var(--ease)}
+.trust-photo:hover .tp-shine,.trust-photo.is-lit .tp-shine{transform:translateX(120%)}
+.tp-chip{position:absolute;left:1rem;right:1rem;bottom:1rem;z-index:3;display:flex;align-items:center;justify-content:center;gap:.55rem;padding:.7rem 1rem;border-radius:999px;
+  background:rgba(11,19,43,.55);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.18);color:#fff;font-size:.82rem;font-weight:500;letter-spacing:.01em;transition:transform .5s var(--ease),background .5s}
+.tp-chip .ic{color:var(--rose)}
+.trust-photo:hover .tp-chip{transform:translateY(-4px);background:rgba(159,18,57,.6)}
+
+@media (prefers-reduced-motion:reduce){.svc-art *{animation:none!important}.a-echo{opacity:.6}.a-beat{opacity:0}}
+
 </style>
 <style id="advon-lang-css">html[lang^="en"] .adv-l-el,html:not([lang^="en"]) .adv-l-en{display:none}</style>
 </head>
@@ -408,7 +488,7 @@ html{scroll-padding-top:110px}
         </div>
     </section>
 
-    <section id="services" class="py-24 px-6 bg-cardio-light relative overflow-hidden">
+    <section id="services" data-live class="py-24 px-6 bg-cardio-light relative overflow-hidden">
         <div class="amb-a absolute top-0 right-0 w-[600px] h-[600px] bg-cardio-blue/5 rounded-full blur-[100px] pointer-events-none"></div>
         <div class="amb-b absolute bottom-0 left-0 w-[400px] h-[400px] bg-cardio-accent/5 rounded-full blur-[80px] pointer-events-none"></div>
 
@@ -421,45 +501,45 @@ html{scroll-padding-top:110px}
 
             <div class="svc-grid grid md:grid-cols-2 gap-8 mt-12">
                 
-                <div class="glass-card p-8 lg:p-10 rounded-[2rem] group svc-card transition-all duration-500 reveal shadow-sm hover:shadow-xl relative overflow-hidden border border-gray-100">
-                    <div class="absolute top-0 right-0 w-32 h-32 bg-cardio-blue/5 rounded-bl-[100px] transition-colors group-hover:bg-cardio-blue/10"></div>
+                <div class="glass-card p-8 lg:p-10 rounded-[2rem] group svc-card fx-card transition-all duration-500 reveal shadow-sm hover:shadow-xl relative overflow-hidden border border-gray-100">
+                    <span class="svc-spot" aria-hidden="true"></span><div class="svc-art art-1" aria-hidden="true"><svg viewBox="0 0 160 64"><path class="a-base" pathLength="1" d="M0,38 H34 L42,32 L48,38 H58 L64,46 L72,8 L80,58 L86,38 H98 L108,29 L118,38 H160"/><path class="a-run" pathLength="1" d="M0,38 H34 L42,32 L48,38 H58 L64,46 L72,8 L80,58 L86,38 H98 L108,29 L118,38 H160"/><circle class="a-beat" cx="72" cy="8" r="3.2"/></svg></div>
                     <div class="w-14 h-14 lg:w-16 lg:h-16 rounded-2xl bg-cardio-dark flex items-center justify-center text-white mb-6 lg:mb-8 group-hover:scale-110 transition-transform shadow-lg">
                         <svg class="ic w-7 h-7 lg:w-8 lg:h-8" width="24" height="24" aria-hidden="true" focusable="false"><use href="#i-activity"/></svg>
                     </div>
-                    <h3 class="text-xl lg:text-2xl font-bold text-cardio-dark mb-4 font-serif">Προληπτικός & Προαθλητικός Έλεγχος</h3>
+                    <span class="svc-num" aria-hidden="true">01<i></i>04</span><h3 class="text-xl lg:text-2xl font-bold text-cardio-dark mb-4 font-serif">Προληπτικός & Προαθλητικός Έλεγχος</h3>
                     <p class="text-sm lg:text-base text-cardio-slate/70 leading-relaxed">
                         Η πρόληψη σώζει ζωές. Ο καρδιολογικός έλεγχος (check-up) περιλαμβάνει κλινική εξέταση, ηλεκτροκαρδιογράφημα και λήψη ιστορικού. Απευθύνεται σε άτομα χωρίς ιστορικό πάθησης και σε αθλητές που χρειάζονται βεβαίωση ιατρού για αθλητικές δραστηριότητες.
                     </p>
                 </div>
 
-                <div class="glass-card p-8 lg:p-10 rounded-[2rem] group svc-card transition-all duration-500 reveal reveal-delay-1 shadow-sm hover:shadow-xl relative overflow-hidden border border-gray-100" style="--glow-color: rgba(159, 18, 57, 0.1);">
-                    <div class="absolute top-0 right-0 w-32 h-32 bg-cardio-accent/5 rounded-bl-[100px] transition-colors group-hover:bg-cardio-accent/10"></div>
+                <div class="glass-card p-8 lg:p-10 rounded-[2rem] group svc-card fx-card transition-all duration-500 reveal reveal-delay-1 shadow-sm hover:shadow-xl relative overflow-hidden border border-gray-100" style="--glow-color: rgba(159, 18, 57, 0.1);">
+                    <span class="svc-spot" aria-hidden="true"></span><div class="svc-art art-2" aria-hidden="true"><svg viewBox="0 0 160 64"><path class="a-fan" d="M80,2 L46,61 A68,68 0 0 0 114,61 Z"/><path class="a-echo e1" d="M70,19 A20,20 0 0 0 90,19"/><path class="a-echo e2" d="M62,33 A36,36 0 0 0 98,33"/><path class="a-echo e3" d="M54,47 A52,52 0 0 0 106,47"/><path class="a-heart" d="M80,46 c-6-5-10-8-10-12 a4.5,4.5 0 0 1 10-1.6 a4.5,4.5 0 0 1 10,1.6 c0,4-4,7-10,12z"/></svg></div>
                     <div class="w-14 h-14 lg:w-16 lg:h-16 rounded-2xl bg-cardio-accent flex items-center justify-center text-white mb-6 lg:mb-8 group-hover:scale-110 transition-transform shadow-lg">
                         <svg class="ic w-7 h-7 lg:w-8 lg:h-8" width="24" height="24" aria-hidden="true" focusable="false"><use href="#i-waves"/></svg>
                     </div>
-                    <h3 class="text-xl lg:text-2xl font-bold text-cardio-dark mb-4 font-serif">Υπερηχοκαρδιογράφημα (Triplex Καρδιάς)</h3>
+                    <span class="svc-num" aria-hidden="true">02<i></i>04</span><h3 class="text-xl lg:text-2xl font-bold text-cardio-dark mb-4 font-serif">Υπερηχοκαρδιογράφημα (Triplex Καρδιάς)</h3>
                     <p class="text-sm lg:text-base text-cardio-slate/70 leading-relaxed">
                         Πλήρης και εξειδικευμένος καρδιολογικός έλεγχος μέσα από πολυετή εμπειρία ως καρδιολόγος στο Ιατρικό Κέντρο Αθηνών και στα νοσοκομεία των Βρυξελλών. Το triplex καρδιάς απευθύνεται σε ασθενείς για παρακολούθηση αρτηριακής υπέρτασης, δυσλιπιδαιμίας, στεφανιαίας νόσου και καρδιακής ανεπάρκειας.
                     </p>
                 </div>
 
-                <div class="glass-card p-8 lg:p-10 rounded-[2rem] group svc-card transition-all duration-500 reveal shadow-sm hover:shadow-xl relative overflow-hidden border border-gray-100">
-                    <div class="absolute top-0 right-0 w-32 h-32 bg-gray-100 rounded-bl-[100px] transition-colors group-hover:bg-gray-200"></div>
+                <div class="glass-card p-8 lg:p-10 rounded-[2rem] group svc-card fx-card transition-all duration-500 reveal shadow-sm hover:shadow-xl relative overflow-hidden border border-gray-100">
+                    <span class="svc-spot" aria-hidden="true"></span><div class="svc-art art-3" aria-hidden="true"><svg viewBox="0 0 160 64"><defs><pattern id="ecgGrid" width="8" height="8" patternUnits="userSpaceOnUse"><path d="M8,0 V8 H0" fill="none" stroke="rgba(159,18,57,.13)" stroke-width=".6"/></pattern><clipPath id="stripClip"><rect x="1" y="1" width="158" height="62" rx="10"/></clipPath></defs><rect class="a-paper" x="1" y="1" width="158" height="62" rx="10"/><g clip-path="url(#stripClip)"><g class="a-strip"><path class="a-trace" d="M0,38 H34 L42,32 L48,38 H58 L64,46 L72,8 L80,58 L86,38 H98 L108,29 L118,38 H160 M160,38 H194 L202,32 L208,38 H218 L224,46 L232,8 L240,58 L246,38 H258 L268,29 L278,38 H320"/></g></g></svg></div>
                     <div class="w-14 h-14 lg:w-16 lg:h-16 rounded-2xl bg-cardio-slate flex items-center justify-center text-white mb-6 lg:mb-8 group-hover:scale-110 transition-transform shadow-lg">
                         <svg class="ic w-7 h-7 lg:w-8 lg:h-8" width="24" height="24" aria-hidden="true" focusable="false"><use href="#i-heart-pulse"/></svg>
                     </div>
-                    <h3 class="text-xl lg:text-2xl font-bold text-cardio-dark mb-4 font-serif">Holter Ρυθμού (24ωρη ή πολυήμερη καταγραφή) & Δοκιμασία Κόπωσης</h3>
+                    <span class="svc-num" aria-hidden="true">03<i></i>04</span><h3 class="text-xl lg:text-2xl font-bold text-cardio-dark mb-4 font-serif">Holter Ρυθμού (24ωρη ή πολυήμερη καταγραφή) & Δοκιμασία Κόπωσης</h3>
                     <p class="text-sm lg:text-base text-cardio-slate/70 leading-relaxed">
                         Παρέχονται σύγχρονες και αξιόπιστες καρδιολογικές υπηρεσίες με στόχο την ολοκληρωμένη διάγνωση και παρακολούθηση της καρδιακής λειτουργίας. Με έμφαση στην ακρίβεια, την ασφάλεια και την εξατομικευμένη φροντίδα, οι υπηρεσίες μας καλύπτουν πλήρως τις ανάγκες πρόληψης, διάγνωσης και παρακολούθησης των καρδιολογικών παθήσεων.
                     </p>
                 </div>
 
-                <div class="glass-card p-8 lg:p-10 rounded-[2rem] group svc-card transition-all duration-500 reveal reveal-delay-1 shadow-sm hover:shadow-xl relative overflow-hidden border border-gray-100">
-                    <div class="absolute top-0 right-0 w-32 h-32 bg-cardio-dark/5 rounded-bl-[100px] transition-colors group-hover:bg-cardio-dark/10"></div>
+                <div class="glass-card p-8 lg:p-10 rounded-[2rem] group svc-card fx-card transition-all duration-500 reveal reveal-delay-1 shadow-sm hover:shadow-xl relative overflow-hidden border border-gray-100">
+                    <span class="svc-spot" aria-hidden="true"></span><div class="svc-art art-4" aria-hidden="true"><svg viewBox="0 0 160 64"><path class="a-route" d="M22,46 Q52,8 80,18 T138,42"/><g class="a-pin p1"><circle class="a-ring" cx="22" cy="46" r="7"/><circle class="a-dot" cx="22" cy="46" r="4"/></g><g class="a-pin p2"><circle class="a-ring" cx="80" cy="18" r="7"/><circle class="a-dot" cx="80" cy="18" r="4"/></g><g class="a-pin p3"><circle class="a-ring" cx="138" cy="42" r="7"/><circle class="a-dot" cx="138" cy="42" r="4"/></g></svg></div>
                     <div class="w-14 h-14 lg:w-16 lg:h-16 rounded-2xl border-2 border-cardio-dark bg-transparent flex items-center justify-center text-cardio-dark mb-6 lg:mb-8 group-hover:scale-110 transition-transform">
                         <svg class="ic w-7 h-7 lg:w-8 lg:h-8" width="24" height="24" aria-hidden="true" focusable="false"><use href="#i-map"/></svg>
                     </div>
-                    <h3 class="text-xl lg:text-2xl font-bold text-cardio-dark mb-4 font-serif">Δίκτυο Ιατρείων <br><span class="text-base lg:text-lg text-cardio-accent">Εξετάσεις σε 3 περιοχές</span></h3>
+                    <span class="svc-num" aria-hidden="true">04<i></i>04</span><h3 class="text-xl lg:text-2xl font-bold text-cardio-dark mb-4 font-serif">Δίκτυο Ιατρείων <br><span class="text-base lg:text-lg text-cardio-accent">Εξετάσεις σε 3 περιοχές</span></h3>
                     <p class="text-sm lg:text-base text-cardio-slate/70 leading-relaxed">
                         Εξετάσεις πραγματοποιούνται κανονικά στα ιατρεία σε <strong>Κολωνάκι</strong>, <strong>Βουλιαγμένη</strong> και <strong>Ωρωπό</strong>. Στόχος μας είναι η καλύτερη δυνατή προσβασιμότητα και η άμεση εξυπηρέτηση των ασθενών κατόπιν ραντεβού.
                     </p>
@@ -469,7 +549,7 @@ html{scroll-padding-top:110px}
         </div>
     </section>
 
-    <section id="trust" class="py-24 px-6 bg-cardio-dark text-white relative overflow-hidden">
+    <section id="trust" data-live class="py-24 px-6 bg-cardio-dark text-white relative overflow-hidden">
         <svg class="trust-ecg" viewBox="0 0 1200 80" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M0,50 L300,50 L318,44 L330,50 L350,50 L360,60 L374,8 L388,70 L400,50 L428,50 L450,40 L478,50 L760,50 L778,44 L790,50 L810,50 L820,60 L834,8 L848,70 L860,50 L888,50 L910,40 L938,50 L1200,50"/></svg>
         <div class="max-w-7xl mx-auto relative">
             <div class="trust-grid">
@@ -481,8 +561,9 @@ html{scroll-padding-top:110px}
                     </p>
                 </div>
 
-                <figure class="trust-photo reveal" data-rv="zoom" onclick="openLightbox('assets/img/congress.webp')">
-                    <img src="assets/img/congress.webp" srcset="assets/img/congress-400.webp 400w, assets/img/congress.webp 591w" sizes="(min-width: 1280px) 340px, 420px" width="591" height="1210" loading="lazy" decoding="async" alt="Συμμετοχή σε Διεθνή Συνέδρια">
+                <figure class="trust-photo fx-tilt reveal" data-rv="zoom" onclick="openLightbox('assets/img/congress.webp')">
+                    <span class="tp-shine" aria-hidden="true"></span><img src="assets/img/congress.webp" srcset="assets/img/congress-400.webp 400w, assets/img/congress.webp 591w" sizes="(min-width: 1280px) 340px, 420px" width="591" height="1210" loading="lazy" decoding="async" alt="Συμμετοχή σε Διεθνή Συνέδρια">
+                    <figcaption class="tp-chip"><svg class="ic w-4 h-4" width="24" height="24" aria-hidden="true"><use href="#i-globe"/></svg>Συμμετοχή σε Διεθνή Συνέδρια</figcaption>
                 </figure>
 
                 <div class="trust-btn reveal reveal-delay-1">
@@ -492,8 +573,8 @@ html{scroll-padding-top:110px}
                 </div>
 
                 <div class="trust-cards">
-                    <div class="tr-card reveal" data-rv="flip">
-                        <span class="tr-ic"><svg class="ic w-6 h-6" width="24" height="24" aria-hidden="true" focusable="false"><use href="#i-building-2"/></svg></span>
+                    <div class="tr-card fx-card reveal" data-rv="flip">
+                        <span class="tr-ic"><svg class="ic w-6 h-6" width="24" height="24" aria-hidden="true" focusable="false"><use href="#i-building-2"/></svg></span><span class="tr-num" aria-hidden="true">01</span>
                         <div>
                             <h4 class="text-xl font-bold mb-3 font-serif">Κορυφαία Νοσοκομειακή Εμπειρία</h4>
                             <p class="text-sm text-gray-400 leading-relaxed">
@@ -502,8 +583,8 @@ html{scroll-padding-top:110px}
                         </div>
                     </div>
 
-                    <div class="tr-card reveal reveal-delay-1" data-rv="flip">
-                        <span class="tr-ic"><svg class="ic w-6 h-6" width="24" height="24" aria-hidden="true" focusable="false"><use href="#i-microscope"/></svg></span>
+                    <div class="tr-card fx-card reveal reveal-delay-1" data-rv="flip">
+                        <span class="tr-ic"><svg class="ic w-6 h-6" width="24" height="24" aria-hidden="true" focusable="false"><use href="#i-microscope"/></svg></span><span class="tr-num" aria-hidden="true">02</span>
                         <div>
                             <h4 class="text-xl font-bold mb-3 font-serif">Ακαδημαϊκή Εξειδίκευση & Έρευνα</h4>
                             <p class="text-sm text-gray-400 leading-relaxed">
@@ -512,8 +593,8 @@ html{scroll-padding-top:110px}
                         </div>
                     </div>
 
-                    <div class="tr-card reveal reveal-delay-2" data-rv="flip">
-                        <span class="tr-ic"><svg class="ic w-6 h-6" width="24" height="24" aria-hidden="true" focusable="false"><use href="#i-globe"/></svg></span>
+                    <div class="tr-card fx-card reveal reveal-delay-2" data-rv="flip">
+                        <span class="tr-ic"><svg class="ic w-6 h-6" width="24" height="24" aria-hidden="true" focusable="false"><use href="#i-globe"/></svg></span><span class="tr-num" aria-hidden="true">03</span>
                         <div>
                             <h4 class="text-xl font-bold mb-3 font-serif">Διεθνής Επιστημονική Παρουσία</h4>
                             <p class="text-sm text-gray-400 leading-relaxed">
@@ -522,8 +603,8 @@ html{scroll-padding-top:110px}
                         </div>
                     </div>
 
-                    <div class="tr-card reveal reveal-delay-3" data-rv="flip">
-                        <span class="tr-ic"><svg class="ic w-6 h-6" width="24" height="24" aria-hidden="true" focusable="false"><use href="#i-shield-check"/></svg></span>
+                    <div class="tr-card fx-card reveal reveal-delay-3" data-rv="flip">
+                        <span class="tr-ic"><svg class="ic w-6 h-6" width="24" height="24" aria-hidden="true" focusable="false"><use href="#i-shield-check"/></svg></span><span class="tr-num" aria-hidden="true">04</span>
                         <div>
                             <h4 class="text-xl font-bold mb-3 font-serif">Ολοκληρωμένη Φροντίδα</h4>
                             <p class="text-sm text-gray-400 leading-relaxed">
@@ -925,6 +1006,47 @@ html{scroll-padding-top:110px}
                 closeLightbox();
             }
         });
+        // 6. Living sections: run the mini-animations only on screen, light follows the cursor, touch screens get an auto-glow
+        (() => {
+            const live = document.querySelectorAll('[data-live]');
+            const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
+            const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const cyclers = new Map();
+            const startCycle = (sec) => {
+                if (fine || calm || cyclers.has(sec)) return;
+                const items = [...sec.querySelectorAll('.fx-card, .fx-tilt')];
+                let i = 0;
+                const step = () => { items.forEach((el, k) => el.classList.toggle('is-lit', k === i % items.length)); i++; };
+                step(); cyclers.set(sec, setInterval(step, 2200));
+            };
+            const stopCycle = (sec) => {
+                clearInterval(cyclers.get(sec)); cyclers.delete(sec);
+                sec.querySelectorAll('.is-lit').forEach(el => el.classList.remove('is-lit'));
+            };
+            if ('IntersectionObserver' in window) {
+                const io = new IntersectionObserver(es => es.forEach(e => {
+                    e.target.classList.toggle('in-view', e.isIntersecting);
+                    e.isIntersecting ? startCycle(e.target) : stopCycle(e.target);
+                }), { threshold: 0.15 });
+                live.forEach(s => io.observe(s));
+            } else live.forEach(s => s.classList.add('in-view'));
+            if (!fine || calm) return;
+            document.querySelectorAll('.fx-card, .fx-tilt').forEach(el => {
+                let raf = 0, ev = null;
+                const tilt = el.classList.contains('fx-tilt') ? 6 : 3.5;
+                const paint = () => {
+                    raf = 0; const r = el.getBoundingClientRect();
+                    const x = (ev.clientX - r.left) / r.width, y = (ev.clientY - r.top) / r.height;
+                    el.style.setProperty('--mx', (x * 100).toFixed(1) + '%');
+                    el.style.setProperty('--my', (y * 100).toFixed(1) + '%');
+                    el.style.setProperty('--rx', ((0.5 - y) * tilt).toFixed(2) + 'deg');
+                    el.style.setProperty('--ry', ((x - 0.5) * tilt).toFixed(2) + 'deg');
+                };
+                el.addEventListener('pointermove', e => { ev = e; if (!raf) raf = requestAnimationFrame(paint); }, { passive: true });
+                el.addEventListener('pointerleave', () => { el.style.setProperty('--rx', '0deg'); el.style.setProperty('--ry', '0deg'); });
+            });
+        })();
+
     </script>
 </body>
 </html>
